@@ -1,12 +1,20 @@
 package kaggle.houseprice
 
+import kaggle.houseprice.HPRegression
+
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.types._
 
-object HPRegression {
+import org.scalatest.{BeforeAndAfterEach, FunSuite}
 
-  private val trainSchema = StructType(
+class TestRegression extends FunSuite {
+
+  val spark = SparkSession.builder
+    .appName("Test-Kaggle-House-Price-Regression")
+    .master("local[*]")
+    .getOrCreate()
+
+  val trainSchema = StructType(
     Array(
       StructField("Id",LongType, false),
       StructField("MSSubClass",LongType, true),
@@ -91,8 +99,7 @@ object HPRegression {
       StructField("SalePrice",LongType, false)
     )
   )
-
-  private val testSchema = StructType(
+  val testSchema = StructType(
     Array(
       StructField("Id",LongType, false),
       StructField("MSSubClass",LongType, true),
@@ -176,37 +183,23 @@ object HPRegression {
       StructField("SaleCondition",StringType, true)
     )
   )
-
-  def main(args: Array[String]):Unit={
-
+  test("Test load data") {
     val spark = SparkSession.builder
-      .appName("Kaggle-House-Price-Regression")
+      .appName("Test-Titanic-Logistic-Regression")
       .master("local[*]")
       .getOrCreate()
-    import spark.implicits._
-    val trainDataDir = args(0)
-    val testDataDir = args(1)
-    val outputDataDir = args(2)
-    val trainData =
-      loadData(spark = spark, fileDir = trainDataDir, scheme = trainSchema)
-    val testData =
-      loadData(spark = spark, fileDir = testDataDir, scheme = testSchema)
-
+    val trainData = HPRegression.loadData(
+      spark = spark,
+      fileDir = "data/train.csv",
+      scheme = trainSchema
+    )
+    val testData = HPRegression.loadData(
+      spark = spark,
+      fileDir = "data/test.csv",
+      scheme = testSchema
+    )
+    assert(trainData.count() == 1460)
+    assert(testData.count() == 1459)
+    spark.stop()
   }
-
-  def loadData(
-                spark: SparkSession,
-                fileDir: String,
-                scheme: StructType
-              ): (DataFrame) = {
-
-    val df = spark.read
-      .format("csv")
-      .option("header", true)
-      .schema(scheme)
-      .load(fileDir)
-
-    df
-  }
-
 }
