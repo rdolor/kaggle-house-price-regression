@@ -1,4 +1,4 @@
 [debug] "not up to date. inChanged = true, force = false
-[debug] Updating ProjectRef(uri("file:/Users/apple/Documents/git-repos/ghtinc/kaggle-house-price/"), "kaggle-house-price")...
-[debug] Done updating ProjectRef(uri("file:/Users/apple/Documents/git-repos/ghtinc/kaggle-house-price/"), "kaggle-house-price")
+[debug] Updating ProjectRef(uri("file:/Users/apple/Documents/git-repos/kaggle-house-price-regression/"), "kaggle-house-price-regression")...
+[debug] Done updating ProjectRef(uri("file:/Users/apple/Documents/git-repos/kaggle-house-price-regression/"), "kaggle-house-price-regression")
 [warn] There may be incompatibilities among your library dependencies; run 'evicted' to see detailed eviction warnings.

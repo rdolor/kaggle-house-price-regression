@@ -1,2 +1,3 @@
 [0m[[0m[0minfo[0m] [0m[0m[32mTestRegression:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- Test load data[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- Test train *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  1427 did not equal 1459 (test.scala:294)[0m[0m

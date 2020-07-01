@@ -19,7 +19,7 @@ class TestRegression extends FunSuite {
       StructField("Id",LongType, false),
       StructField("MSSubClass",LongType, true),
       StructField("MSZoning",StringType, true),
-      StructField("LotFrontage",LongType, true),
+      StructField("LotFrontage",StringType, true),//,LongType, true),
       StructField("LotArea",LongType, true),
       StructField("Street",StringType, true),
       StructField("Alley",StringType, true),
@@ -75,7 +75,7 @@ class TestRegression extends FunSuite {
       StructField("Fireplaces",LongType, true),
       StructField("FireplaceQu",StringType, true),
       StructField("GarageType",StringType, true),
-      StructField("GarageYrBlt",LongType, true),
+      StructField("GarageYrBlt",StringType, true),//,LongType, true),
       StructField("GarageFinish",StringType, true),
       StructField("GarageCars",LongType, true),
       StructField("GarageArea",LongType, true),
@@ -88,9 +88,9 @@ class TestRegression extends FunSuite {
       StructField("3SsnPorch",LongType, true),
       StructField("ScreenPorch",LongType, true),
       StructField("PoolArea",LongType, true),
-      StructField("PoolQC",LongType, true),
+      StructField("PoolQC",StringType, true),//,LongType, true),
       StructField("Fence",StringType, true),
-      StructField("MiscFeature",LongType, true),
+      StructField("MiscFeature",StringType, true),//,LongType, true),
       StructField("MiscVal",LongType, true),
       StructField("MoSold",LongType, true),
       StructField("YrSold",LongType, true),
@@ -104,7 +104,7 @@ class TestRegression extends FunSuite {
       StructField("Id",LongType, false),
       StructField("MSSubClass",LongType, true),
       StructField("MSZoning",StringType, true),
-      StructField("LotFrontage",LongType, true),
+      StructField("LotFrontage",StringType, true),//,LongType, true),
       StructField("LotArea",LongType, true),
       StructField("Street",StringType, true),
       StructField("Alley",StringType, true),
@@ -160,7 +160,7 @@ class TestRegression extends FunSuite {
       StructField("Fireplaces",LongType, true),
       StructField("FireplaceQu",StringType, true),
       StructField("GarageType",StringType, true),
-      StructField("GarageYrBlt",LongType, true),
+      StructField("GarageYrBlt",StringType, true),//,LongType, true),
       StructField("GarageFinish",StringType, true),
       StructField("GarageCars",LongType, true),
       StructField("GarageArea",LongType, true),
@@ -173,9 +173,9 @@ class TestRegression extends FunSuite {
       StructField("3SsnPorch",LongType, true),
       StructField("ScreenPorch",LongType, true),
       StructField("PoolArea",LongType, true),
-      StructField("PoolQC",LongType, true),
+      StructField("PoolQC",StringType, true),//,LongType, true),
       StructField("Fence",StringType, true),
-      StructField("MiscFeature",LongType, true),
+      StructField("MiscFeature",StringType, true),//,LongType, true),
       StructField("MiscVal",LongType, true),
       StructField("MoSold",LongType, true),
       StructField("YrSold",LongType, true),
@@ -185,7 +185,7 @@ class TestRegression extends FunSuite {
   )
   test("Test load data") {
     val spark = SparkSession.builder
-      .appName("Test-Titanic-Logistic-Regression")
+      .appName("Test-House-Price-Regression")
       .master("local[*]")
       .getOrCreate()
     val trainData = HPRegression.loadData(
@@ -198,8 +198,141 @@ class TestRegression extends FunSuite {
       fileDir = "data/test.csv",
       scheme = testSchema
     )
+
+    trainData.printSchema()
+
     assert(trainData.count() == 1460)
     assert(testData.count() == 1459)
+
+    //trainData.show()
+
     spark.stop()
   }
+
+  test("Test parseData") {
+    val spark = SparkSession.builder
+      .appName("Test-House-Price-Regression")
+      .master("local[*]")
+      .getOrCreate()
+    val trainData = HPRegression.loadData(
+      spark = spark,
+      fileDir = "data/train.csv",
+      scheme = trainSchema
+    )
+    val testData = HPRegression.loadData(
+      spark = spark,
+      fileDir = "data/test.csv",
+      scheme = testSchema
+    )
+
+    val (parsedTrainData, parsedTestData) = HPRegression.parseData(
+      trainData = trainData,
+      testData = testData
+    )
+    //parsedTrainData.show()
+    //parsedTestData.show()
+
+    val trainColumns = parsedTrainData.columns.toSeq
+    val testColumns = parsedTestData.columns.toSeq
+    assert(
+      trainColumns == Array(
+        "label",
+        "features"
+      ).toSeq
+    )
+    assert(
+      testColumns == Array(
+        "features"
+      ).toSeq
+    )
+
+    assert(parsedTrainData.count() == 1460)
+    assert(parsedTestData.count() == 1459)
+
+    assert(parsedTrainData.columns.size == 2)
+    assert(parsedTestData.columns.size == 1)
+
+    //assert(parsedTrainData.head(5).isEmpty)
+    //assert(parsedTrainData.take(1).isEmpty)
+    //assert(parsedTestData.head(5).isEmpty)
+    //assert(parsedTestData.take(1).isEmpty)
+
+    //assert(parsedTestData.isEmpty)
+    //assert(parsedTrainData.isEmpty)
+
+    spark.stop()
+  }
+
+  test("Test train") {
+    // Load training data
+    val spark = SparkSession.builder
+      .appName("Test-House-Price-Regression")
+      .master("local[*]")
+      .getOrCreate()
+    val trainData = HPRegression.loadData(
+      spark = spark,
+      fileDir = "data/train.csv",
+      scheme = trainSchema
+    )
+    val testData = HPRegression.loadData(
+      spark = spark,
+      fileDir = "data/test.csv",
+      scheme = testSchema
+    )
+
+    val (parsedTrainData, parsedTestData) = HPRegression.parseData(
+      trainData = trainData,
+      testData = testData
+    )
+
+    val prediction = HPRegression.trainAndPredict(
+      trainData = parsedTrainData,
+      testData = parsedTestData
+    )
+    prediction.show()
+
+    assert(prediction.count() == 1459)
+    spark.stop()
+  }
+
+
+//  test("Test write to csv") {
+//    // Load training data
+//    val spark = SparkSession.builder
+//      .appName("Test-House-Price-Regression")
+//      .master("local[*]")
+//      .getOrCreate()
+//    val trainData = HPRegression.loadData(
+//      spark = spark,
+//      fileDir = "data/train.csv",
+//      scheme = trainSchema
+//    )
+//    val testData = HPRegression.loadData(
+//      spark = spark,
+//      fileDir = "data/test.csv",
+//      scheme = testSchema
+//    )
+//
+//    val (parsedTrainData, parsedTestData) = HPRegression.parseData(
+//      trainData = trainData,
+//      testData = testData
+//    )
+//
+//    val prediction = HPRegression.trainAndPredict(
+//      trainData = parsedTrainData,
+//      testData = parsedTestData
+//    )
+//
+//    val res = HPRegression.write2CSV(
+//      prediction = prediction,
+//      testData = testData,
+//      outputDir = "/tmp/submit",
+//      isWrite = false
+//    )
+//    res.show()
+//
+//    assert(res.count() == 1459)
+//    spark.stop()
+//  }
+
 }
