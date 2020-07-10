@@ -1,72 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<testsuite hostname="Applede-MacBook-Air.local" name="kaggle.houseprice.TestRegression" tests="1" errors="0" failures="1" skipped="0" time="148.914" timestamp="2020-07-01T23:54:15">
+<testsuite hostname="Applede-MacBook-Air.local" name="kaggle.houseprice.TestRegression" tests="1" errors="0" failures="0" skipped="0" time="65.861" timestamp="2020-07-10T18:29:08">
                      <properties>
       <property name="jline.esc.timeout" value="0"/><property name="jna.platform.library.path" value="/usr/lib:/usr/lib"/><property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/><property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib"/><property name="java.vm.version" value="25.251-b08"/><property name="user.country.format" value="US"/><property name="gopherProxySet" value="false"/><property name="java.vm.vendor" value="Oracle Corporation"/><property name="java.vendor.url" value="http://java.oracle.com/"/><property name="path.separator" value=":"/><property name="jna.loaded" value="true"/><property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/><property name="file.encoding.pkg" value="sun.io"/><property name="user.country" value="GB"/><property name="sun.java.launcher" value="SUN_STANDARD"/><property name="sun.os.patch.level" value="unknown"/><property name="jna.nosys" value="true"/><property name="java.vm.specification.name" value="Java Virtual Machine Specification"/><property name="user.dir" value="/Users/apple/Documents/git-repos/kaggle-house-price-regression"/><property name="java.runtime.version" value="1.8.0_251-b08"/><property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/><property name="idea.managed" value="true"/><property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/endorsed"/><property name="os.arch" value="x86_64"/><property name="java.io.tmpdir" value="/var/folders/11/bhdwwd8x6_d597fstpvdc52c0000gn/T/"/><property name="line.separator" value="
-"/><property name="java.vm.specification.vendor" value="Oracle Corporation"/><property name="log4j.ignoreTCL" value="true"/><property name="os.name" value="Mac OS X"/><property name="sun.jnu.encoding" value="UTF-8"/><property name="jnidispatch.path" value="/Users/apple/Library/Caches/JNA/temp/jna4666264915667166253.tmp"/><property name="jetty.git.hash" value="unknown"/><property name="java.library.path" value="/Users/apple/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/><property name="sun.nio.ch.bugLevel" value=""/><property name="java.specification.name" value="Java Platform API Specification"/><property name="java.class.version" value="52.0"/><property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/><property name="os.version" value="10.15.5"/><property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/><property name="swoval.tmpdir" value="/Users/apple/.sbt/1.0"/><property name="user.home" value="/Users/apple"/><property name="user.timezone" value="Asia/Taipei"/><property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/><property name="file.encoding" value="UTF-8"/><property name="java.specification.version" value="1.8"/><property name="java.class.path" value="/Users/apple/Library/Application Support/JetBrains/IdeaIC2020.1/plugins/Scala/launcher/sbt-launch.jar"/><property name="user.name" value="rdolor"/><property name="jline.shutdownhook" value="false"/><property name="java.vm.specification.version" value="1.8"/><property name="sun.java.command" value="/Users/apple/Library/Application Support/JetBrains/IdeaIC2020.1/plugins/Scala/launcher/sbt-launch.jar early(addPluginSbtFile=&quot;&quot;&quot;/private/var/folders/11/bhdwwd8x6_d597fstpvdc52c0000gn/T/idea.sbt&quot;&quot;&quot;) ; set ideaPort in Global := 60468 ; idea-shell"/><property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre"/><property name="sun.arch.data.model" value="64"/><property name="user.language" value="en"/><property name="java.specification.vendor" value="Oracle Corporation"/><property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/><property name="java.vm.info" value="mixed mode"/><property name="java.version" value="1.8.0_251"/><property name="java.ext.dirs" value="/Users/apple/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/><property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/classes"/><property name="java.vendor" value="Oracle Corporation"/><property name="file.separator" value="/"/><property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/><property name="sbt.supershell" value="false"/><property name="sun.io.unicode.encoding" value="UnicodeBig"/><property name="sun.cpu.endian" value="little"/><property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/><property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/><property name="sun.cpu.isalist" value=""/>
+"/><property name="java.vm.specification.vendor" value="Oracle Corporation"/><property name="log4j.ignoreTCL" value="true"/><property name="os.name" value="Mac OS X"/><property name="sun.jnu.encoding" value="UTF-8"/><property name="jnidispatch.path" value="/Users/apple/Library/Caches/JNA/temp/jna7099733972667299971.tmp"/><property name="jetty.git.hash" value="unknown"/><property name="java.library.path" value="/Users/apple/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/><property name="sun.nio.ch.bugLevel" value=""/><property name="java.specification.name" value="Java Platform API Specification"/><property name="java.class.version" value="52.0"/><property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/><property name="os.version" value="10.15.5"/><property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/><property name="swoval.tmpdir" value="/Users/apple/.sbt/1.0"/><property name="user.home" value="/Users/apple"/><property name="user.timezone" value="Asia/Taipei"/><property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/><property name="file.encoding" value="UTF-8"/><property name="java.specification.version" value="1.8"/><property name="java.class.path" value="/Users/apple/Library/Application Support/JetBrains/IdeaIC2020.1/plugins/Scala/launcher/sbt-launch.jar"/><property name="user.name" value="rdolor"/><property name="jline.shutdownhook" value="false"/><property name="java.vm.specification.version" value="1.8"/><property name="sun.java.command" value="/Users/apple/Library/Application Support/JetBrains/IdeaIC2020.1/plugins/Scala/launcher/sbt-launch.jar early(addPluginSbtFile=&quot;&quot;&quot;/private/var/folders/11/bhdwwd8x6_d597fstpvdc52c0000gn/T/idea.sbt&quot;&quot;&quot;) ; set ideaPort in Global := 62714 ; idea-shell"/><property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre"/><property name="sun.arch.data.model" value="64"/><property name="user.language" value="en"/><property name="java.specification.vendor" value="Oracle Corporation"/><property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/><property name="java.vm.info" value="mixed mode"/><property name="java.version" value="1.8.0_251"/><property name="java.ext.dirs" value="/Users/apple/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/><property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/classes"/><property name="java.vendor" value="Oracle Corporation"/><property name="file.separator" value="/"/><property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/><property name="sbt.supershell" value="false"/><property name="sun.io.unicode.encoding" value="UnicodeBig"/><property name="sun.cpu.endian" value="little"/><property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/><property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/><property name="sun.cpu.isalist" value=""/>
     </properties>
-                     <testcase classname="kaggle.houseprice.TestRegression" name="Test train" time="148.914">
-                                                 <failure message="1427 did not equal 1459" type="org.scalatest.exceptions.TestFailedException">org.scalatest.exceptions.TestFailedException: 1427 did not equal 1459
-	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:528)
-	at org.scalatest.FunSuite.newAssertionFailedException(FunSuite.scala:1560)
-	at org.scalatest.Assertions$AssertionsHelper.macroAssert(Assertions.scala:501)
-	at kaggle.houseprice.TestRegression$$anonfun$3.apply$mcV$sp(test.scala:294)
-	at kaggle.houseprice.TestRegression$$anonfun$3.apply(test.scala:266)
-	at kaggle.houseprice.TestRegression$$anonfun$3.apply(test.scala:266)
-	at org.scalatest.OutcomeOf$class.outcomeOf(OutcomeOf.scala:85)
-	at org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)
-	at org.scalatest.Transformer.apply(Transformer.scala:22)
-	at org.scalatest.Transformer.apply(Transformer.scala:20)
-	at org.scalatest.FunSuiteLike$$anon$1.apply(FunSuiteLike.scala:186)
-	at org.scalatest.TestSuite$class.withFixture(TestSuite.scala:196)
-	at org.scalatest.FunSuite.withFixture(FunSuite.scala:1560)
-	at org.scalatest.FunSuiteLike$class.invokeWithFixture$1(FunSuiteLike.scala:183)
-	at org.scalatest.FunSuiteLike$$anonfun$runTest$1.apply(FunSuiteLike.scala:196)
-	at org.scalatest.FunSuiteLike$$anonfun$runTest$1.apply(FunSuiteLike.scala:196)
-	at org.scalatest.SuperEngine.runTestImpl(Engine.scala:289)
-	at org.scalatest.FunSuiteLike$class.runTest(FunSuiteLike.scala:196)
-	at org.scalatest.FunSuite.runTest(FunSuite.scala:1560)
-	at org.scalatest.FunSuiteLike$$anonfun$runTests$1.apply(FunSuiteLike.scala:229)
-	at org.scalatest.FunSuiteLike$$anonfun$runTests$1.apply(FunSuiteLike.scala:229)
-	at org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:396)
-	at org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:384)
-	at scala.collection.immutable.List.foreach(List.scala:392)
-	at org.scalatest.SuperEngine.traverseSubNodes$1(Engine.scala:384)
-	at org.scalatest.SuperEngine.org$scalatest$SuperEngine$$runTestsInBranch(Engine.scala:379)
-	at org.scalatest.SuperEngine.runTestsImpl(Engine.scala:461)
-	at org.scalatest.FunSuiteLike$class.runTests(FunSuiteLike.scala:229)
-	at org.scalatest.FunSuite.runTests(FunSuite.scala:1560)
-	at org.scalatest.Suite$class.run(Suite.scala:1147)
-	at org.scalatest.FunSuite.org$scalatest$FunSuiteLike$$super$run(FunSuite.scala:1560)
-	at org.scalatest.FunSuiteLike$$anonfun$run$1.apply(FunSuiteLike.scala:233)
-	at org.scalatest.FunSuiteLike$$anonfun$run$1.apply(FunSuiteLike.scala:233)
-	at org.scalatest.SuperEngine.runImpl(Engine.scala:521)
-	at org.scalatest.FunSuiteLike$class.run(FunSuiteLike.scala:233)
-	at org.scalatest.FunSuite.run(FunSuite.scala:1560)
-	at org.scalatest.tools.Framework.org$scalatest$tools$Framework$$runSuite(Framework.scala:314)
-	at org.scalatest.tools.Framework$ScalaTestTask.execute(Framework.scala:480)
-	at sbt.TestRunner.runTest$1(TestFramework.scala:139)
-	at sbt.TestRunner.run(TestFramework.scala:154)
-	at sbt.TestFramework$$anon$3$$anonfun$$lessinit$greater$1.$anonfun$apply$1(TestFramework.scala:317)
-	at sbt.TestFramework$.sbt$TestFramework$$withContextLoader(TestFramework.scala:277)
-	at sbt.TestFramework$$anon$3$$anonfun$$lessinit$greater$1.apply(TestFramework.scala:317)
-	at sbt.TestFramework$$anon$3$$anonfun$$lessinit$greater$1.apply(TestFramework.scala:317)
-	at sbt.TestFunction.apply(TestFramework.scala:329)
-	at sbt.Tests$.$anonfun$toTask$1(Tests.scala:311)
-	at sbt.std.Transform$$anon$3.$anonfun$apply$2(Transform.scala:46)
-	at sbt.std.Transform$$anon$4.work(Transform.scala:67)
-	at sbt.Execute.$anonfun$submit$2(Execute.scala:281)
-	at sbt.internal.util.ErrorHandling$.wideConvert(ErrorHandling.scala:19)
-	at sbt.Execute.work(Execute.scala:290)
-	at sbt.Execute.$anonfun$submit$1(Execute.scala:281)
-	at sbt.ConcurrentRestrictions$$anon$4.$anonfun$submitValid$1(ConcurrentRestrictions.scala:178)
-	at sbt.CompletionService$$anon$2.call(CompletionService.scala:37)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at java.lang.Thread.run(Thread.java:748)
-</failure>
+                     <testcase classname="kaggle.houseprice.TestRegression" name="Test write to csv" time="65.861">
+                                                 
                                                </testcase>
                      <system-out><![CDATA[]]></system-out>
                      <system-err><![CDATA[]]></system-err>

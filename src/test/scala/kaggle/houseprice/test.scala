@@ -1,10 +1,10 @@
 package kaggle.houseprice
 
 import kaggle.houseprice.HPRegression
-
+//import kaggle.houseprice.HPRegression.{loadData, trainSchema}
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types._
-
+import org.apache.spark.sql.functions._
 import org.scalatest.{BeforeAndAfterEach, FunSuite}
 
 class TestRegression extends FunSuite {
@@ -183,6 +183,14 @@ class TestRegression extends FunSuite {
       StructField("SaleCondition",StringType, true)
     )
   )
+
+  val submitSchema = StructType(
+    Array(
+      StructField("Id",StringType, false),
+      StructField("SalePrice",FloatType, false)
+    )
+  )
+
   test("Test load data") {
     val spark = SparkSession.builder
       .appName("Test-House-Price-Regression")
@@ -190,21 +198,37 @@ class TestRegression extends FunSuite {
       .getOrCreate()
     val trainData = HPRegression.loadData(
       spark = spark,
-      fileDir = "data/train.csv",
-      scheme = trainSchema
+      fileDir = "data/train.csv"//,
+      //scheme = trainSchema
     )
     val testData = HPRegression.loadData(
       spark = spark,
-      fileDir = "data/test.csv",
-      scheme = testSchema
+      fileDir = "data/test.csv"//,
+      //scheme = testSchema
     )
 
     trainData.printSchema()
+    testData.printSchema()
 
     assert(trainData.count() == 1460)
     assert(testData.count() == 1459)
 
-    //trainData.show()
+    val aggTrainCols = trainData.columns.map(colName =>
+      sum(when(col(colName).isNull
+        || col(colName) === ""
+        || col(colName) === "NA"
+        || col(colName) === " ",1).otherwise(0)
+      ).as(colName + "_c"))
+
+    val aggTestCols = testData.columns.map(colName =>
+      sum(when(col(colName).isNull
+        || col(colName) === ""
+        || col(colName) === "NA"
+        || col(colName) === " ",1).otherwise(0)
+      ).as(colName + "_c"))
+
+    trainData.agg(aggTrainCols.head, aggTrainCols.tail: _*).show
+    testData.agg(aggTestCols.head, aggTestCols.tail: _*).show
 
     spark.stop()
   }
@@ -216,13 +240,13 @@ class TestRegression extends FunSuite {
       .getOrCreate()
     val trainData = HPRegression.loadData(
       spark = spark,
-      fileDir = "data/train.csv",
-      scheme = trainSchema
+      fileDir = "data/train.csv"//,
+      //scheme = trainSchema
     )
     val testData = HPRegression.loadData(
       spark = spark,
-      fileDir = "data/test.csv",
-      scheme = testSchema
+      fileDir = "data/test.csv"//,
+      //scheme = testSchema
     )
 
     val (parsedTrainData, parsedTestData) = HPRegression.parseData(
@@ -246,12 +270,6 @@ class TestRegression extends FunSuite {
       ).toSeq
     )
 
-    assert(parsedTrainData.count() == 1460)
-    assert(parsedTestData.count() == 1459)
-
-    assert(parsedTrainData.columns.size == 2)
-    assert(parsedTestData.columns.size == 1)
-
     //assert(parsedTrainData.head(5).isEmpty)
     //assert(parsedTrainData.take(1).isEmpty)
     //assert(parsedTestData.head(5).isEmpty)
@@ -259,6 +277,12 @@ class TestRegression extends FunSuite {
 
     //assert(parsedTestData.isEmpty)
     //assert(parsedTrainData.isEmpty)
+
+    assert(parsedTrainData.count() == 1460)
+    assert(parsedTestData.count() == 1459)
+
+    assert(parsedTrainData.columns.size == 2)
+    assert(parsedTestData.columns.size == 1)
 
     spark.stop()
   }
@@ -271,13 +295,13 @@ class TestRegression extends FunSuite {
       .getOrCreate()
     val trainData = HPRegression.loadData(
       spark = spark,
-      fileDir = "data/train.csv",
-      scheme = trainSchema
+      fileDir = "data/train.csv"//,
+      //scheme = trainSchema
     )
     val testData = HPRegression.loadData(
       spark = spark,
-      fileDir = "data/test.csv",
-      scheme = testSchema
+      fileDir = "data/test.csv"//,
+      //scheme = testSchema
     )
 
     val (parsedTrainData, parsedTestData) = HPRegression.parseData(
@@ -289,50 +313,65 @@ class TestRegression extends FunSuite {
       trainData = parsedTrainData,
       testData = parsedTestData
     )
-    prediction.show()
 
+    //prediction.show(1460, false)
     assert(prediction.count() == 1459)
+
     spark.stop()
   }
 
 
-//  test("Test write to csv") {
-//    // Load training data
-//    val spark = SparkSession.builder
-//      .appName("Test-House-Price-Regression")
-//      .master("local[*]")
-//      .getOrCreate()
-//    val trainData = HPRegression.loadData(
-//      spark = spark,
-//      fileDir = "data/train.csv",
-//      scheme = trainSchema
-//    )
-//    val testData = HPRegression.loadData(
-//      spark = spark,
-//      fileDir = "data/test.csv",
-//      scheme = testSchema
-//    )
-//
-//    val (parsedTrainData, parsedTestData) = HPRegression.parseData(
-//      trainData = trainData,
-//      testData = testData
-//    )
-//
-//    val prediction = HPRegression.trainAndPredict(
-//      trainData = parsedTrainData,
-//      testData = parsedTestData
-//    )
-//
-//    val res = HPRegression.write2CSV(
-//      prediction = prediction,
-//      testData = testData,
-//      outputDir = "/tmp/submit",
-//      isWrite = false
-//    )
-//    res.show()
-//
-//    assert(res.count() == 1459)
-//    spark.stop()
-//  }
+  test("Test write to csv") {
+    //Load training data
+
+    val spark = SparkSession.builder
+      .appName("Test-House-Price-Regression")
+      .master("local[*]")
+      .getOrCreate()
+
+    val trainData = HPRegression.loadData(
+      spark = spark,
+      fileDir = "data/train.csv"//,
+      //scheme = trainSchema
+    )
+
+    val testData = HPRegression.loadData(
+      spark = spark,
+      fileDir = "data/test.csv"//,
+      //scheme = testSchema
+    )
+
+    val (parsedTrainData, parsedTestData) = HPRegression.parseData(
+      trainData = trainData,
+      testData = testData
+    )
+
+    val prediction = HPRegression.trainAndPredict(
+      trainData = parsedTrainData,
+      testData = parsedTestData
+    )
+
+    val sampleSubmission = HPRegression.loadData(
+      spark = spark,
+      fileDir = "data/sample_submission.csv"//,
+      //scheme = submitSchema
+    )
+
+    assert(prediction.count() == 1459)
+    assert(sampleSubmission.count() == 1459)
+
+    val res = HPRegression.write2CSV(
+      prediction = prediction,//prediction,
+      sampleSubmission = sampleSubmission,
+      outputDir = "tmp/submission",
+      isWrite = true
+    )
+
+    res.show()
+
+    assert(res.count() == 1459)
+
+    spark.stop()
+  }
 
 }
