@@ -1,2 +1,6 @@
 [0m[[0m[0mdebug[0m] [0m[0mAcquiring lock on file /Users/apple/Documents/git-repos/kaggle-house-price-regression/project/target/.sbt-compilation-infos/kaggle-house-price-regression-test/.sbt-idea-lock ...[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/apple/Documents/git-repos/kaggle-house-price-regression/src/test/scala/kaggle/houseprice/test.scala:3:26: imported `HPRegression' is permanently hidden by definition of object HPRegression in package houseprice[0m
+[0m[[0m[33mwarn[0m] [0m[0mimport kaggle.houseprice.HPRegression[0m
+[0m[[0m[33mwarn[0m] [0m[0m                         ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
 [0m[[0m[0mdebug[0m] [0m[0mReleasing lock on file /Users/apple/Documents/git-repos/kaggle-house-price-regression/project/target/.sbt-compilation-infos/kaggle-house-price-regression-test/.sbt-idea-lock.[0m
