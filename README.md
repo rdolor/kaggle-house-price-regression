@@ -1,8 +1,6 @@
 # kaggle-house-price-regression
 
-This is my first project using Spark with Scala and IntelliJ IDE. This is really just for learning and for getting comfortable on developing and building a Scala project. I could have achieved my goal even without using an IDE (e.g. use the terminal and/or text editor), but I am curious about IntelliJ so I used it here.
-
-I participated in the Kaggle Knowledge Competition about [House Prices: Advanced Regression Techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques) and used their datasets (put them inside the `data/` folder). The goal of the competition is to predict the sales price for each house. The models are evaluated using Root-Mean-Squared-Error (RMSE), which means that the lower the value, the better -- the predictions are close to the actual house prices.
+This is a project about using Spark with Scala and IntelliJ IDE. I participated in the Kaggle Knowledge Competition called [House Prices: Advanced Regression Techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques) and used their datasets (put them inside a `data/` folder). The goal of the competition is to predict the sales price for each house. The models are evaluated using Root-Mean-Squared-Error (RMSE), which means that the lower the value, the better -- the predictions are close to the actual house prices.
 
 ### Versions
 
